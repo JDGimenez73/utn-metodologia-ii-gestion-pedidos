@@ -1,7 +1,38 @@
 # Gestión de Pedidos - API REST
 
-Trabajo práctico de Programación IV desarrollado con Java 21, Spring Boot,
-Spring Data JPA, H2, Lombok, validaciones Jakarta y Swagger/OpenAPI.
+Trabajo práctico de Metodología II, UTN, comisión 14.
+
+Integrantes: Jose Dario Gimenez e Israel Gaddiel García Moscoso.
+
+La aplicación original fue desarrollada en Programación IV con Java 21,
+Spring Boot, Spring Data JPA, H2, Lombok, validaciones Jakarta y Swagger/OpenAPI.
+Este repositorio registra su evolución para el trabajo de Metodología II.
+
+## Proyecto de origen
+
+- [Repositorio original de Programación IV](https://github.com/JDGimenez73/utn-programacion-iv-gestion-pedidos).
+- Commit compartido de partida: `f267efe6d2cdc1db94e450481c4f5c1212609e2a`.
+- Tag de referencia en este repositorio: `estado-inicial`.
+
+El alcance del trabajo se concentra en listar, consultar, crear y actualizar
+pedidos. Los módulos de usuarios, productos y categorías proporcionan los datos
+necesarios para ejecutar esas operaciones.
+
+## Requisitos
+
+- JDK 21 y variable `JAVA_HOME` configurada.
+- Acceso a Internet para la primera descarga de Maven y sus dependencias.
+- El Maven Wrapper incluido permite trabajar sin instalar Maven por separado.
+
+## Pruebas
+
+Desde la carpeta que contiene `pom.xml`:
+
+```powershell
+.\mvnw.cmd test
+```
+
+La versión inicial contiene una prueba de carga del contexto de Spring.
 
 ## Ejecución
 
