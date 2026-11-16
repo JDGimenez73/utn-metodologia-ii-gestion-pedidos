@@ -113,7 +113,7 @@ despues de aplicar ambas refactorizaciones.
 ## Limitaciones
 
 - No se confirmo el commit ejecutado por el servidor 8081.
-- No se registro una nueva prueba POST posterior a R04.
+- Israel no registro POST posterior a R04 en su ronda original; Dario ejecuto P03 posteriormente sobre 15175c5.
 - La consulta GET no cubre todos los casos de error.
 - Las pruebas automatizadas cubren escenarios seleccionados,
   no todas las combinaciones posibles de datos.
@@ -129,3 +129,29 @@ totales consistentes respecto de sus subtotales.
 
 No se identificaron diferencias en los escenarios
 evaluados, dentro de las limitaciones documentadas.
+## Verificaciones complementarias de Dario
+
+Durante la revision formal del PR #5,
+Jose Dario Gimenez verifico el commit 15175c5
+en una instancia nueva, puerto 18085.
+
+Resultados informados:
+
+- Cinco pruebas Maven satisfactorias.
+- Once verificaciones HTTP correctas.
+- P03 (POST) ejecutada despues de R04.
+- Aprobacion formal del PR #5.
+- Integracion mediante 451dfdb.
+
+Evidencia:
+
+https://github.com/JDGimenez73/utn-metodologia-ii-gestion-pedidos/pull/5#pullrequestreview-5924384850
+
+Estas pruebas fueron realizadas por Dario,
+no por Israel.
+
+La instancia original de Israel en el puerto 8081
+no quedo vinculada a un commit exacto.
+
+La cobertura continua limitada a los escenarios
+efectivamente verificados.

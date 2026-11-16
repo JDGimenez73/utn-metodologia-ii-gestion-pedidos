@@ -4,7 +4,7 @@
 
 - Asignatura: Metodologia de Sistemas II
 - Proyecto: Gestion de Pedidos
-- Integrantes: Jose Dario Gimenez e Israel Garcia
+- Integrantes: Jose Dario Gimenez e Israel Gaddiel Garcia Moscoso
 - Fecha: 16/11/2026
 - Rama de documentacion: israel/anexo-evidencias
 - Base de integracion: 451dfdb
@@ -136,22 +136,33 @@ Documento:
 ### 4.2 Revision de R03/R04
 
 Autor: Israel Garcia
-Revisor solicitado: Jose Dario Gimenez
+Revisor: Jose Dario Gimenez
 Commit revisado: 15175c5
 PR: #5
 Commit de integracion: 451dfdb
 
 Resultado confirmado:
 
-El PR #5 fue integrado a main.
+Jose Dario Gimenez aprobo formalmente el PR #5
+despues de revisar el commit 15175c5.
 
-La integracion confirma el merge, pero por si sola
-no documenta el alcance de una revision tecnica
-independiente.
+En su revision registro:
 
-Queda pendiente incorporar el detalle de la
-revision de Dario si existe un registro verificable.
+- Cinco pruebas Maven satisfactorias.
+- Once verificaciones HTTP correctas.
+- Ejecucion de P03 (POST) posterior a R04.
+- Instancia nueva en el puerto 18085.
+- Verificacion sobre el commit exacto 15175c5.
 
+El PR #5 fue integrado a main mediante 451dfdb.
+
+Evidencia de aprobacion:
+
+https://github.com/JDGimenez73/utn-metodologia-ii-gestion-pedidos/pull/5#pullrequestreview-5924384850
+
+Estas verificaciones complementan las pruebas de Israel.
+No identifican retrospectivamente el commit ejecutado
+por la instancia original del puerto 8081.
 ## 5. Conclusion individual - Israel Garcia
 
 Mi participacion en el proyecto incluyo la ejecucion
@@ -185,7 +196,7 @@ regresiones en los escenarios comprobados.
 
 - No se confirmo el commit exacto ejecutado por
   el servidor utilizado para la ultima prueba GET.
-- Falta una prueba POST documentada posterior a R04.
+- Israel no registro un POST posterior a R04 en su ronda original; Dario si ejecuto P03 en la revision aprobada del PR #5.
 - Las pruebas automatizadas no cubren todos los
   escenarios posibles.
 - La base H2 en memoria puede reiniciarse al
@@ -194,9 +205,8 @@ regresiones en los escenarios comprobados.
   estaba ocupado.
 - Se observaron advertencias no bloqueantes
   de Mockito y Byte Buddy.
-- Falta incorporar el alcance documentado de
-  la revision cruzada de Dario sobre R03/R04,
-  si se encuentra disponible.
+- Se incorporo el alcance documentado de
+  las verificaciones complementarias de Dario en el PR #5.
 
 ## 7. Estado final
 

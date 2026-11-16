@@ -9,7 +9,7 @@
 - Commit: 15175c5
 - Pull Request: #5
 - Revisor solicitado: Jose Dario Gimenez
-- Estado de revision: pendiente
+- Estado de revision: aprobado por Jose Dario Gimenez en PR #5
 
 ## Objetivo
 
@@ -152,8 +152,8 @@ Se solicito la revision de Jose Dario Gimenez.
 - No se registraron fallos ni errores en Maven.
 - Se observaron advertencias no bloqueantes de Mockito
   y Byte Buddy durante las pruebas.
-- No se realizo todavia la integracion del PR #5 a main.
-- La aprobacion del revisor permanece pendiente.
+- El PR #5 fue integrado a main mediante 451dfdb.
+- Dario aprobo el PR #5 con cinco pruebas Maven y once verificaciones HTTP correctas sobre 15175c5.
 
 ## Conclusion
 
@@ -163,8 +163,17 @@ de codigo y mejoran la separacion de responsabilidades.
 Las pruebas automatizadas ejecutadas no identificaron
 regresiones en los escenarios evaluados.
 
-La validacion funcional completa posterior a R04 y la
-revision cruzada quedan pendientes de cierre.
+Las verificaciones posteriores de Dario incluyeron
+P03 (POST), cinco pruebas Maven y once verificaciones
+HTTP correctas sobre el commit 15175c5, utilizando
+una instancia nueva en el puerto 18085.
 
-Este registro no implica la aprobacion ni la fusion
-del Pull Request #5.
+La revision cruzada fue aprobada y el PR #5
+se integro mediante 451dfdb.
+
+Evidencia:
+https://github.com/JDGimenez73/utn-metodologia-ii-gestion-pedidos/pull/5#pullrequestreview-5924384850
+
+La prueba original de Israel en el puerto 8081
+mantiene su limitacion de identificacion de version.
+La cobertura sigue limitada a los casos evaluados.
