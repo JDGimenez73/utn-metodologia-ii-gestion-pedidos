@@ -32,37 +32,8 @@ public class PedidoService {
     }
 
     @Transactional
-    public PedidoDto crear(PedidoDto dto) {
-        Usuario usuario = usuarioRepository.findById(dto.usuarioId())
-                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario inexistente: " + dto.usuarioId()));
-
-        Pedido pedido = Pedido.builder()
-                .fecha(dto.fecha())
-                .estado(dto.estado())
-                .formaPago(dto.formaPago())
-                .total(0.0)
-                .usuario(usuario)
-                .build();
-
-        for (DetallePedidoDto detalleDto : dto.detalles()) {
-            Producto producto = productoRepository.findById(detalleDto.productoId())
-                    .orElseThrow(() -> new RecursoNoEncontradoException(
-                            "Producto inexistente: " + detalleDto.productoId()));
-            DetallePedido detalle = DetallePedido.builder()
-                    .cantidad(detalleDto.cantidad())
-                    .subtotal(detalleDto.cantidad() * producto.getPrecio())
-                    .producto(producto)
-                    .build();
-            pedido.addDetallePedido(detalle);
-        }
-
-        return convertirADto(pedidoRepository.save(pedido));
-    }
-
-    @Transactional
     public PedidoDto crear(PedidoCreate dto) {
-        Usuario usuario = usuarioRepository.findById(dto.usuarioId())
-                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario inexistente: " + dto.usuarioId()));
+        Usuario usuario = obtenerUsuario(dto.usuarioId());
         Pedido pedido = Pedido.builder()
                 .fecha(dto.fecha()).estado(dto.estado()).formaPago(dto.formaPago())
                 .total(0.0).usuario(usuario).build();
@@ -91,8 +62,7 @@ public class PedidoService {
     @Transactional
     public PedidoDto actualizar(Long id, PedidoEdit dto) {
         Pedido pedido = obtenerEntidad(id);
-        Usuario usuario = usuarioRepository.findById(dto.usuarioId())
-                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario inexistente: " + dto.usuarioId()));
+        Usuario usuario = obtenerUsuario(dto.usuarioId());
         pedido.setFecha(dto.fecha());
         pedido.setEstado(dto.estado());
         pedido.setFormaPago(dto.formaPago());
@@ -106,6 +76,11 @@ public class PedidoService {
 
     public long contar() {
         return pedidoRepository.count();
+    }
+
+    private Usuario obtenerUsuario(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario inexistente: " + id));
     }
 
     private Pedido obtenerEntidad(Long id) {

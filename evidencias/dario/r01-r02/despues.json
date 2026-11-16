@@ -1,0 +1,378 @@
+{
+  "P01": {
+    "metodo": "GET",
+    "ruta": "/api/pedidos",
+    "http": 200,
+    "location": null,
+    "respuesta": [
+      {
+        "id": 1,
+        "fecha": "2026-11-16",
+        "estado": "CONFIRMADO",
+        "total": 5300.0,
+        "formaPago": "EFECTIVO",
+        "usuarioId": 1,
+        "detalles": [
+          {
+            "id": 1,
+            "cantidad": 2,
+            "subtotal": 1800.0,
+            "productoId": 1,
+            "productoNombre": "Agua Mineral"
+          },
+          {
+            "id": 2,
+            "cantidad": 1,
+            "subtotal": 3500.0,
+            "productoId": 3,
+            "productoNombre": "Café Molido"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "fecha": "2026-11-16",
+        "estado": "PENDIENTE",
+        "total": 7000.0,
+        "formaPago": "TARJETA",
+        "usuarioId": 1,
+        "detalles": [
+          {
+            "id": 3,
+            "cantidad": 2,
+            "subtotal": 2200.0,
+            "productoId": 8,
+            "productoNombre": "Detergente"
+          },
+          {
+            "id": 4,
+            "cantidad": 3,
+            "subtotal": 4800.0,
+            "productoId": 5,
+            "productoNombre": "Arroz"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "fecha": "2026-11-16",
+        "estado": "TERMINADO",
+        "total": 6600.0,
+        "formaPago": "TRANSFERENCIA",
+        "usuarioId": 2,
+        "detalles": [
+          {
+            "id": 5,
+            "cantidad": 4,
+            "subtotal": 3800.0,
+            "productoId": 10,
+            "productoNombre": "Servilletas"
+          },
+          {
+            "id": 6,
+            "cantidad": 1,
+            "subtotal": 2800.0,
+            "productoId": 4,
+            "productoNombre": "Yerba Mate"
+          }
+        ]
+      }
+    ]
+  },
+  "P02": {
+    "metodo": "GET",
+    "ruta": "/api/pedidos/1",
+    "http": 200,
+    "location": null,
+    "respuesta": {
+      "id": 1,
+      "fecha": "2026-11-16",
+      "estado": "CONFIRMADO",
+      "total": 5300.0,
+      "formaPago": "EFECTIVO",
+      "usuarioId": 1,
+      "detalles": [
+        {
+          "id": 1,
+          "cantidad": 2,
+          "subtotal": 1800.0,
+          "productoId": 1,
+          "productoNombre": "Agua Mineral"
+        },
+        {
+          "id": 2,
+          "cantidad": 1,
+          "subtotal": 3500.0,
+          "productoId": 3,
+          "productoNombre": "Café Molido"
+        }
+      ]
+    }
+  },
+  "P03": {
+    "metodo": "POST",
+    "ruta": "/api/pedidos",
+    "http": 201,
+    "location": "/api/pedidos/4",
+    "respuesta": {
+      "id": 4,
+      "fecha": "2026-11-16",
+      "estado": "PENDIENTE",
+      "total": 5300.0,
+      "formaPago": "EFECTIVO",
+      "usuarioId": 1,
+      "detalles": [
+        {
+          "id": 7,
+          "cantidad": 2,
+          "subtotal": 1800.0,
+          "productoId": 1,
+          "productoNombre": "Agua Mineral"
+        },
+        {
+          "id": 8,
+          "cantidad": 1,
+          "subtotal": 3500.0,
+          "productoId": 3,
+          "productoNombre": "Café Molido"
+        }
+      ]
+    }
+  },
+  "P04": {
+    "metodo": "PUT",
+    "ruta": "/api/pedidos/4",
+    "http": 200,
+    "location": null,
+    "respuesta": {
+      "id": 4,
+      "fecha": "2026-11-16",
+      "estado": "CONFIRMADO",
+      "total": 5300.0,
+      "formaPago": "EFECTIVO",
+      "usuarioId": 1,
+      "detalles": [
+        {
+          "id": 7,
+          "cantidad": 2,
+          "subtotal": 1800.0,
+          "productoId": 1,
+          "productoNombre": "Agua Mineral"
+        },
+        {
+          "id": 8,
+          "cantidad": 1,
+          "subtotal": 3500.0,
+          "productoId": 3,
+          "productoNombre": "Café Molido"
+        }
+      ]
+    }
+  },
+  "P05": {
+    "metodo": "GET",
+    "ruta": "/api/pedidos/999999",
+    "http": 404,
+    "location": null,
+    "respuesta": {
+      "fecha": "2026-11-16T09:19:09.7310431",
+      "estado": 404,
+      "error": "Not Found",
+      "mensaje": "Pedido inexistente: 999999",
+      "ruta": "/api/pedidos/999999",
+      "validaciones": {}
+    }
+  },
+  "P06": {
+    "metodo": "POST",
+    "ruta": "/api/pedidos",
+    "http": 400,
+    "location": null,
+    "respuesta": {
+      "fecha": "2026-11-16T09:19:09.7530431",
+      "estado": 400,
+      "error": "Bad Request",
+      "mensaje": "Hay datos inválidos en la solicitud",
+      "ruta": "/api/pedidos",
+      "validaciones": {
+        "detalles[0].cantidad": "La cantidad debe ser mayor que cero"
+      }
+    }
+  },
+  "R01-alta-usuario-inexistente": {
+    "metodo": "POST",
+    "ruta": "/api/pedidos",
+    "http": 404,
+    "location": null,
+    "respuesta": {
+      "fecha": "2026-11-16T09:19:09.762043",
+      "estado": 404,
+      "error": "Not Found",
+      "mensaje": "Usuario inexistente: 999999",
+      "ruta": "/api/pedidos",
+      "validaciones": {}
+    }
+  },
+  "R01-edicion-usuario-inexistente": {
+    "metodo": "PUT",
+    "ruta": "/api/pedidos/4",
+    "http": 404,
+    "location": null,
+    "respuesta": {
+      "fecha": "2026-11-16T09:19:09.7690429",
+      "estado": 404,
+      "error": "Not Found",
+      "mensaje": "Usuario inexistente: 999999",
+      "ruta": "/api/pedidos/4",
+      "validaciones": {}
+    }
+  },
+  "R02-producto-inexistente": {
+    "metodo": "POST",
+    "ruta": "/api/pedidos",
+    "http": 404,
+    "location": null,
+    "respuesta": {
+      "fecha": "2026-11-16T09:19:09.7890453",
+      "estado": 404,
+      "error": "Not Found",
+      "mensaje": "Producto inexistente: 999999",
+      "ruta": "/api/pedidos",
+      "validaciones": {}
+    }
+  },
+  "R01-edicion-rechazada-sin-cambios": {
+    "metodo": "GET",
+    "ruta": "/api/pedidos/4",
+    "http": 200,
+    "location": null,
+    "respuesta": {
+      "id": 4,
+      "fecha": "2026-11-16",
+      "estado": "CONFIRMADO",
+      "total": 5300.0,
+      "formaPago": "EFECTIVO",
+      "usuarioId": 1,
+      "detalles": [
+        {
+          "id": 7,
+          "cantidad": 2,
+          "subtotal": 1800.0,
+          "productoId": 1,
+          "productoNombre": "Agua Mineral"
+        },
+        {
+          "id": 8,
+          "cantidad": 1,
+          "subtotal": 3500.0,
+          "productoId": 3,
+          "productoNombre": "Café Molido"
+        }
+      ]
+    }
+  },
+  "R02-altas-rechazadas-sin-inserciones": {
+    "metodo": "GET",
+    "ruta": "/api/pedidos",
+    "http": 200,
+    "location": null,
+    "respuesta": [
+      {
+        "id": 1,
+        "fecha": "2026-11-16",
+        "estado": "CONFIRMADO",
+        "total": 5300.0,
+        "formaPago": "EFECTIVO",
+        "usuarioId": 1,
+        "detalles": [
+          {
+            "id": 1,
+            "cantidad": 2,
+            "subtotal": 1800.0,
+            "productoId": 1,
+            "productoNombre": "Agua Mineral"
+          },
+          {
+            "id": 2,
+            "cantidad": 1,
+            "subtotal": 3500.0,
+            "productoId": 3,
+            "productoNombre": "Café Molido"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "fecha": "2026-11-16",
+        "estado": "PENDIENTE",
+        "total": 7000.0,
+        "formaPago": "TARJETA",
+        "usuarioId": 1,
+        "detalles": [
+          {
+            "id": 3,
+            "cantidad": 2,
+            "subtotal": 2200.0,
+            "productoId": 8,
+            "productoNombre": "Detergente"
+          },
+          {
+            "id": 4,
+            "cantidad": 3,
+            "subtotal": 4800.0,
+            "productoId": 5,
+            "productoNombre": "Arroz"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "fecha": "2026-11-16",
+        "estado": "TERMINADO",
+        "total": 6600.0,
+        "formaPago": "TRANSFERENCIA",
+        "usuarioId": 2,
+        "detalles": [
+          {
+            "id": 5,
+            "cantidad": 4,
+            "subtotal": 3800.0,
+            "productoId": 10,
+            "productoNombre": "Servilletas"
+          },
+          {
+            "id": 6,
+            "cantidad": 1,
+            "subtotal": 2800.0,
+            "productoId": 4,
+            "productoNombre": "Yerba Mate"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "fecha": "2026-11-16",
+        "estado": "CONFIRMADO",
+        "total": 5300.0,
+        "formaPago": "EFECTIVO",
+        "usuarioId": 1,
+        "detalles": [
+          {
+            "id": 7,
+            "cantidad": 2,
+            "subtotal": 1800.0,
+            "productoId": 1,
+            "productoNombre": "Agua Mineral"
+          },
+          {
+            "id": 8,
+            "cantidad": 1,
+            "subtotal": 3500.0,
+            "productoId": 3,
+            "productoNombre": "Café Molido"
+          }
+        ]
+      }
+    ]
+  }
+}
