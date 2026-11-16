@@ -2,8 +2,8 @@ package com.utn.gestionpedidos.config;
 
 import com.utn.gestionpedidos.dto.categoria.CategoriaCreate;
 import com.utn.gestionpedidos.dto.categoria.CategoriaDto;
-import com.utn.gestionpedidos.dto.detallePedido.DetallePedidoDto;
-import com.utn.gestionpedidos.dto.pedido.PedidoDto;
+import com.utn.gestionpedidos.dto.detallePedido.DetallePedidoCreate;
+import com.utn.gestionpedidos.dto.pedido.PedidoCreate;
 import com.utn.gestionpedidos.dto.producto.ProductoCreate;
 import com.utn.gestionpedidos.dto.producto.ProductoDto;
 import com.utn.gestionpedidos.dto.usuario.UsuarioCreate;
@@ -83,13 +83,13 @@ public class CargaInicialDatos implements CommandLineRunner {
         System.out.println("Carga inicial completada: 2 usuarios, 3 categorías, 10 productos y 3 pedidos.");
     }
 
-    private PedidoDto nuevoPedido(Estado estado, FormaPago formaPago, Long usuarioId,
-                                   DetallePedidoDto... detalles) {
-        return new PedidoDto(null, LocalDate.now(), estado, null, formaPago,
+    private PedidoCreate nuevoPedido(Estado estado, FormaPago formaPago, Long usuarioId,
+                                     DetallePedidoCreate... detalles) {
+        return new PedidoCreate(LocalDate.now(), estado, formaPago,
                 usuarioId, List.of(detalles));
     }
 
-    private DetallePedidoDto detalle(int cantidad, ProductoDto producto) {
-        return new DetallePedidoDto(null, cantidad, null, producto.id(), producto.nombre());
+    private DetallePedidoCreate detalle(int cantidad, ProductoDto producto) {
+        return new DetallePedidoCreate(cantidad, producto.id());
     }
 }
