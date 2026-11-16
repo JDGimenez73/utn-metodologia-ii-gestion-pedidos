@@ -1,0 +1,6 @@
+﻿Prueba: P05 - Consultar pedido inexistente
+Metodo: GET
+Endpoint: /api/pedidos/999999
+HTTP observado: 404
+HTTP esperado: 404
+Resultado: APROBADA

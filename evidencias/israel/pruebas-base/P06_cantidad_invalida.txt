@@ -1,0 +1,7 @@
+﻿Prueba: P06 - Rechazar cantidad invalida
+Metodo: POST
+Endpoint: /api/pedidos
+Entrada: cantidad = 0, productoId = 1
+HTTP observado: 400
+HTTP esperado: 400
+Resultado: APROBADA
