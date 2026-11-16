@@ -1,6 +1,6 @@
 package com.utn.gestionpedidos.service;
 
-import com.utn.gestionpedidos.dto.detallePedido.DetallePedidoDto;
+import com.utn.gestionpedidos.mapper.PedidoMapper;
 import com.utn.gestionpedidos.dto.pedido.PedidoDto;
 import com.utn.gestionpedidos.dto.pedido.PedidoCreate;
 import com.utn.gestionpedidos.dto.pedido.PedidoEdit;
@@ -22,13 +22,16 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;
     private final ProductoRepository productoRepository;
+    private final PedidoMapper pedidoMapper;
 
     public PedidoService(PedidoRepository pedidoRepository,
                          UsuarioRepository usuarioRepository,
-                         ProductoRepository productoRepository) {
+                         ProductoRepository productoRepository,
+                         PedidoMapper pedidoMapper) {
         this.pedidoRepository = pedidoRepository;
         this.usuarioRepository = usuarioRepository;
         this.productoRepository = productoRepository;
+        this.pedidoMapper = pedidoMapper;
     }
 
     @Transactional
@@ -40,23 +43,19 @@ public class PedidoService {
         dto.detalles().forEach(item -> {
             Producto producto = productoRepository.findById(item.productoId())
                     .orElseThrow(() -> new RecursoNoEncontradoException("Producto inexistente: " + item.productoId()));
-            pedido.addDetallePedido(DetallePedido.builder()
-                    .cantidad(item.cantidad())
-                    .subtotal(item.cantidad() * producto.getPrecio())
-                    .producto(producto)
-                    .build());
+            pedido.addDetallePedido(new DetallePedido(null, item.cantidad(), producto));
         });
-        return convertirADto(pedidoRepository.save(pedido));
+        return pedidoMapper.convertirADto(pedidoRepository.save(pedido));
     }
 
     @Transactional(readOnly = true)
     public List<PedidoDto> listar() {
-        return pedidoRepository.findAll().stream().map(this::convertirADto).toList();
+        return pedidoRepository.findAll().stream().map(pedidoMapper::convertirADto).toList();
     }
 
     @Transactional(readOnly = true)
     public PedidoDto buscarPorId(Long id) {
-        return convertirADto(obtenerEntidad(id));
+        return pedidoMapper.convertirADto(obtenerEntidad(id));
     }
 
     @Transactional
@@ -67,7 +66,7 @@ public class PedidoService {
         pedido.setEstado(dto.estado());
         pedido.setFormaPago(dto.formaPago());
         pedido.setUsuario(usuario);
-        return convertirADto(pedidoRepository.save(pedido));
+        return pedidoMapper.convertirADto(pedidoRepository.save(pedido));
     }
 
     public void eliminar(Long id) {
@@ -88,15 +87,4 @@ public class PedidoService {
                 .orElseThrow(() -> new RecursoNoEncontradoException("Pedido inexistente: " + id));
     }
 
-    private PedidoDto convertirADto(Pedido pedido) {
-        List<DetallePedidoDto> detalles = pedido.getDetalles().stream()
-                .map(detalle -> new DetallePedidoDto(
-                        detalle.getId(), detalle.getCantidad(), detalle.getSubtotal(),
-                        detalle.getProducto().getId(), detalle.getProducto().getNombre()))
-                .toList();
-        return new PedidoDto(
-                pedido.getId(), pedido.getFecha(), pedido.getEstado(), pedido.getTotal(),
-                pedido.getFormaPago(), pedido.getUsuario().getId(), detalles
-        );
-    }
 }
